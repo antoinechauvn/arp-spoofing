@@ -1,2 +1,13 @@
-# arp-spoofing
-Compréhension des dangers du protocole ARP (Address Resolution Protocol) dans le milieu de la cybersécurité
+# Compréhension des dangers du protocole ARP (Address Resolution Protocol) dans le milieu de la cybersécurité
+
+</br>
+
+> Les entrées ARP peuvent facilement être manipulées en utilisant des paquets de données falsifiées. On parle alors d’ARP spoofing (de l’anglais spoof, qui signifie échanger), un type d’attaque de l’homme du milieu, qui permet aux pirates d’échanger deux systèmes de communication en passant inaperçus. Nous présentons ici comment la résolution d’adresse en particulier peut être manipulée via ARP, ainsi que les mesures à prendre pour éviter ou résoudre ce genre de problème.
+
+> Le scénario de requête et de réponse du protocole ARP est organisé de façon à ce que la première réponse à la demande ARP soit acceptée et enregistrée. Dans le cadre de l’ARP spoofing, les pirates tentent de devancer l’ordinateur visé en envoyant une réponse contenant des informations incorrectes pour manipuler la table ARP de l’ordinateur qui envoie la demande. On appelle ceci l’ARP poisoning, ou la contamination du cache ARP. En règle générale, ces paquets de données contiennent l’adresse MAC d’un appareil du réseau contrôlé par des pirates. Le système visé guide l’IP vers la mauvaise adresse hardware, et envoie tous les paquets de données futures vers le système contrôlé par les pirates, qui sont alors en mesure d’enregistrer ou de manipuler le trafic des données.
+
+> Pour que cette supercherie ne soit pas découverte, le trafic intercepté est transmis au système initialement visé. Le pirate devient alors l’homme du milieu. Si les paquets de données interceptés, au lieu d’être transférés, sont supprimés, on parle alors d’une attaque par déni de service. L’ARP spoofing fonctionne aussi bien dans les environnements LAN que WLAN. Même le cryptage d’un réseau sans fil via un accès wifi protégé (WPA), n’offre pas de protection suffisante. Pour communiquer dans des réseaux IPv4 locaux, tous les appareils connectés doivent résoudre les adresses MAC, ce qui ne peut se faire que via l’ARP.
+
+> Cain&Abel est un logiciel particulièrement connu pour se tapir derrière les demandes de broadcast et pour envoyer des ARP factices. Mais pour « contaminer » le cache ARP d’un appareil réseau, un pirate n’a pas forcément besoin d’attendre les demandes d’ARP. Une autre stratégie consiste en effet à bombarder le réseau de fausses réponses ARP. Si la plupart des systèmes ignorent les paquets de réponses qui ne sont pas liées à une demande, ceci n’est plus valable dès qu’un ordinateur dans le LAN envoie une requête ARP, et qu’il est donc dans l’attente d’une réponse. En fonction de la chronologie, la fausse réponse peut arriver avant celle du système visé. Ce modèle d’attaque peut être automatisé grâce à des programmes comme Ettercap.
+
+###### © 2021 1&1 IONOS SARL
